@@ -22,6 +22,7 @@ const Input: React.FC<InputProps> = ({
         <div className="grow shrink">
                 <input type={type} value={value} onChange={onChange} required={required} placeholder={placeholder} disabled={disabled}
                 className={clsx(`
+                bg-gray-100
                 form-input
                 block
                 w-full
@@ -33,8 +34,8 @@ const Input: React.FC<InputProps> = ({
                 shadow-sm
                 ring-1
                 ring-inset
-                ring-gray-300
-                placeholder:text-gray-300
+                ring-gray-200
+                placeholder:text-gray-400
                 placeholder:font-semibold
                 focus:ring-1
                 focus:ring-inset
