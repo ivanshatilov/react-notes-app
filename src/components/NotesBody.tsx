@@ -13,7 +13,7 @@ const NotesBody: React.FC<NotesBodyProps> = ({children}) => {
             <div className="h-full w-full flex items-center justify-center">
                 <div className="flex flex-col items-center gap-6">
                     <div className="ml-6 w-52 h-full select-none">
-                        <img className="select-none" src="/notes.png"/>
+                        <img className="select-none" src="/notes.png" alt="notes"/>
                     </div>
                     <div className="font-bold text-3xl select-none">No notes found</div>
                 </div>
