@@ -51,6 +51,7 @@ export const notesSlice = createSlice({
             state.notes = state.notes.map(note => {
                 if(note.id === action.payload.id) {
                     note.editable = action.payload.editable
+                    note.body = note.body.trim()
                 }
                 return note;
             })

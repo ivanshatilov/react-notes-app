@@ -15,8 +15,11 @@ const AddNoteForm: React.FC<AddNoteInputProps> = () => {
 
     const addNoteHandler = (event: any) => {
         event.preventDefault();
-        dispatch(addNote({id: nanoid(), body: value,  date: new Date().toLocaleDateString(), confirmed: false, editable: false}))
-        setValue("")
+        if(value.trim().length > 2) {
+            dispatch(addNote({id: nanoid(), body: value.trim(),  date: new Date().toLocaleDateString(), confirmed: false, editable: false}))
+            setValue("")
+        }
+        else alert("The note should contain more symbols!")
     }
     const [value, setValue] = useState("");
 

@@ -8,23 +8,33 @@ body,
   height: 100%;
 }
 
+#note::-webkit-scrollbar {
+  display: none;
+}
+ 
+/* Скрываем scrollbar для IE, Edge и Firefox */
+html {
+  -ms-overflow-style: none;  /* IE и Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
 /* width */
-::-webkit-scrollbar {
+#notesbody::-webkit-scrollbar {
   width: 8px;
 }
 
 /* Track */
-::-webkit-scrollbar-track {
+#notesbody::-webkit-scrollbar-track {
   background: #f1f1f1;
 }
 
 /* Handle */
-::-webkit-scrollbar-thumb {
+#notesbody::-webkit-scrollbar-thumb {
   background: #c7c7c7;
   border-radius: 5px;
 }
 
 /* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
+#notesbody::-webkit-scrollbar-thumb:hover {
   background: #9c9c9c;
 }

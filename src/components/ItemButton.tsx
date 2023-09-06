@@ -24,10 +24,10 @@ const ItemButton: React.FC<ItemButtonProps> = ({
            shadow-sm
            text-md
             `,
-            color === 'delete' && "bg-red-600 hover:bg-red-900 hover:text-gray-50",
-            color === 'edit' && "bg-emerald-600 hover:bg-emerald-900 hover:text-gray-50",
-            color === 'confirm' && "bg-lime-600 hover:bg-lime-900 hover:text-gray-50",
-            color === 'cancel' && "bg-stone-400 hover:bg-stone-600 hover:text-gray-50",
+            (color === 'delete' && !disabled) && "bg-red-600 hover:bg-red-900 hover:text-gray-50",
+            (color === 'edit' && !disabled) && "bg-emerald-600 hover:bg-emerald-900 hover:text-gray-50",
+            (color === 'confirm' && !disabled) && "bg-lime-600 hover:bg-lime-900 hover:text-gray-50",
+            (color === 'cancel'  && !disabled) && "bg-stone-400 hover:bg-stone-600 hover:text-gray-50",
             disabled && "bg-gray-300 hover:bg-gray-300"
             )}>
                 <Icon />
