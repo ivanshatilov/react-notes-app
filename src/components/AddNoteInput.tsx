@@ -15,7 +15,7 @@ const AddNoteForm: React.FC<AddNoteInputProps> = () => {
 
     const addNoteHandler = (event: any) => {
         event.preventDefault();
-        dispatch(addNote({id: nanoid(), body: value}))
+        dispatch(addNote({id: nanoid(), body: value,  date: new Date().toLocaleDateString(), confirmed: false}))
         setValue("")
     }
     const [value, setValue] = useState("");
