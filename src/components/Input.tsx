@@ -20,7 +20,7 @@ const Input: React.FC<InputProps> = ({
 }) => {
     return ( 
         <div className="grow shrink">
-                <input type={type} value={value} onChange={onChange} required={required} placeholder={placeholder} maxLength={64} disabled={disabled}
+                <input type={type} value={value} onChange={onChange} required={required} placeholder={placeholder} maxLength={128} disabled={disabled}
                 className={clsx(`
                 bg-gray-100
                 form-input

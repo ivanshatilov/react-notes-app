@@ -13,6 +13,7 @@
     "@types/react-dom": "^18.2.7",
     "@types/react-redux": "^7.1.26",
     "clsx": "^2.0.0",
+    "nanoid": "^4.0.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.10.1",

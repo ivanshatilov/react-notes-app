@@ -3,6 +3,7 @@ import Button from "./Button";
 import Input from "./Input";
 import { notesSlice } from "../store/reducers/notesSlice";
 import { useAppDispatch } from "../hooks/redux";
+import { nanoid } from "nanoid";
 
 interface AddNoteInputProps {
 
@@ -14,7 +15,7 @@ const AddNoteForm: React.FC<AddNoteInputProps> = () => {
 
     const addNoteHandler = (event: any) => {
         event.preventDefault();
-        dispatch(addNote(value))
+        dispatch(addNote({id: nanoid(), body: value}))
         setValue("")
     }
     const [value, setValue] = useState("");
