@@ -28,8 +28,8 @@ const AddNoteForm: React.FC<AddNoteInputProps> = () => {
     }
 
     return (
-        <div className="w-full sm:w-3/4 lg:w-2/3 sm:mx-10">
-            <form onSubmit={addNoteHandler} className="sm:my-8 p-5 flex gap-4 sm:gap-8 bg-white rounded-lg">
+        <div className="w-full lg:w-2/3 lg:mx-10">
+            <form onSubmit={addNoteHandler} className="lg:my-8 p-6 py-8 lg:py-6 flex gap-4 sm:gap-8 bg-white lg:rounded-lg">
                 <Input placeholder="Some text" value={value} required onChange={updateValue} />
                 <Button type='submit'>Add note</Button>
             </form>

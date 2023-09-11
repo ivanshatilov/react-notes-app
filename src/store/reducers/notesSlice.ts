@@ -1,4 +1,5 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit"
+import { nanoid } from "nanoid"
 
 interface NotesState {
     notes: {
@@ -13,9 +14,9 @@ interface NotesState {
 const initialState: NotesState = {
     // notes: ['take out the trash and clean up the house', 'go to a meeting in the park at 17 pm', 'finish reading the book',]
     notes: [
-        {id: '1', body: 'take out the trash and clean up the house', date: "17:20:2001", confirmed: false, editable: false},
-        {id: '2', body: 'go to a meeting in the park at 17 pm', date: "17:20:2001", confirmed: false, editable: false},
-        {id: '3', body: 'finish reading the book', date: "17:20:2001", confirmed: false, editable: false},
+        {id: nanoid(), body: 'take out the trash and clean up the house', date: "17.10.2014", confirmed: false, editable: false},
+        {id: nanoid(), body: 'go to a meeting in the park at 17 pm', date: "17.10.2014", confirmed: false, editable: false},
+        {id: nanoid(), body: 'finish reading the book', date: "17.10.2014", confirmed: false, editable: false},
     
     ]
 }
@@ -55,6 +56,12 @@ export const notesSlice = createSlice({
                 }
                 return note;
             })
+        },
+        moveNote(state, action: PayloadAction<{oldNoteIndex: number, destNoteIndex: number}>) {
+            const newCards = Array.from(state.notes);
+            const [removedCard] = newCards.splice(action.payload.oldNoteIndex, 1);
+            newCards.splice(action.payload.destNoteIndex, 0, removedCard);
+            state.notes = newCards;
         }
     }
 })

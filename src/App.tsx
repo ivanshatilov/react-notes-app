@@ -4,10 +4,10 @@ import NotesBody from './components/NotesBody';
 
 function App() {
   return (
-    <MainPage>
-      <AddNoteForm />
-      <NotesBody />
-    </MainPage>
+        <MainPage>
+          <AddNoteForm />
+              <NotesBody />
+        </MainPage>
   );
 }
 
