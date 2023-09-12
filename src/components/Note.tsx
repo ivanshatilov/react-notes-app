@@ -9,7 +9,7 @@ import { Draggable } from 'react-beautiful-dnd';
 interface NoteProps {
     id: string,
     value: string,
-    date: string,
+    date: {day: string, time: string},
     confirmed: boolean,
     editable: boolean,
     propIndex: number
@@ -23,7 +23,7 @@ const Note: React.FC<NoteProps> = ({value, id, date, confirmed, editable, propIn
         dispatch(removeNote(id))
     }
     const updateNoteHandler = (event: ChangeEvent<HTMLTextAreaElement>) => {
-        dispatch(updateNote({id: id, body: event.target.value, date: new Date().toLocaleDateString()}))
+        dispatch(updateNote({id: id, body: event.target.value, date: {day: new Date().toDateString(), time: new Date().toLocaleTimeString()}}))
     }
     const toggleConfirmedHandler = () => {
         dispatch(toggleConfirmed({id: id, confirmed: !confirmed}))
@@ -50,7 +50,10 @@ const Note: React.FC<NoteProps> = ({value, id, date, confirmed, editable, propIn
                                         {editable ? <ItemButton icon={BsFillPencilFill} disabled={confirmed} onClick={toggleEditableHandler} color='edit'/> : <ItemButton icon={BsFillPencilFill} disabled={confirmed} onClick={toggleEditableHandler} color='edit'/>}
                                         <ItemButton icon={BsFillTrashFill} onClick={deleteNoteHandler} disabled={editable} color='delete'/>
                                     </div>
-                                    <span className='text-sm font-bold text-gray-400'>{date}</span> 
+                                    <div className='flex flex-col items-center gap-1'>
+                                        <span className='text-xs font-bold text-gray-400'>{date.day}</span>
+                                        <span className='text-xs font-bold text-gray-400'>{date.time}</span>
+                                    </div>
                             </div>
                         </div> 
                     </li>

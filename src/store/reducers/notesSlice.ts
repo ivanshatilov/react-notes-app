@@ -5,38 +5,44 @@ interface NotesState {
     notes: {
         id: string,
         body: string,
-        date: string,
+        date: {day: string, time: string},
         confirmed: boolean,
         editable: boolean
     }[]
 }
 
+// @ts-ignore
+const localNotes = localStorage.getItem('notes') ? JSON.parse(localStorage.getItem('notes')) : []
+
 const initialState: NotesState = {
     // notes: ['take out the trash and clean up the house', 'go to a meeting in the park at 17 pm', 'finish reading the book',]
-    notes: [
-        {id: nanoid(), body: 'take out the trash and clean up the house', date: "17.10.2014", confirmed: false, editable: false},
-        {id: nanoid(), body: 'go to a meeting in the park at 17 pm', date: "17.10.2014", confirmed: false, editable: false},
-        {id: nanoid(), body: 'finish reading the book', date: "17.10.2014", confirmed: false, editable: false},
-    
-    ]
+    notes: localNotes
 }
+// [
+//     {id: nanoid(), body: 'take out the trash and clean up the house', date: {day: "Tue Sep 12 2023", time: "12:30:24"}, confirmed: false, editable: false},
+//     {id: nanoid(), body: 'go to a meeting in the park at 17 pm', date: {day: "Tue Sep 12 2023", time: "12:30:24"}, confirmed: false, editable: false},
+//     {id: nanoid(), body: 'finish reading the book', date: {day: "Tue Sep 12 2023", time: "12:30:24"}, confirmed: false, editable: false},
+// ]
 
 export const notesSlice = createSlice({
     name: 'note',
     initialState,
     reducers: {
-        addNote(state, action: PayloadAction<{id: string, body: string, date: string, confirmed: boolean, editable: boolean}>) {
-            state.notes.push(action.payload);
+        addNote(state, action: PayloadAction<{id: string, body: string, date: {day: string, time: string}, confirmed: boolean, editable: boolean}>) {
+            state.notes.unshift(action.payload);
+            localStorage.setItem('notes', JSON.stringify(state.notes.map(item => item)));
         },
         removeNote(state, action: PayloadAction<string>) {
             state.notes = state.notes.filter(note => note.id !== action.payload )
+            localStorage.setItem('notes', JSON.stringify(state.notes.map(item => item)))
         },
-        updateNote(state, action: PayloadAction<{id: string, body: string, date: string}>) {
+        updateNote(state, action: PayloadAction<{id: string, body: string, date: {day: string, time: string}}>) {
             state.notes = state.notes.map(note => {
                 if(note.id === action.payload.id) {
                     note.body = action.payload.body
                     note.date = action.payload.date
                 }
+                localStorage.setItem('notes', JSON.stringify(state.notes.map(item => item)))
                 return note;
             })
         },
@@ -45,6 +51,7 @@ export const notesSlice = createSlice({
                 if(note.id === action.payload.id) {
                     note.confirmed = action.payload.confirmed
                 }
+                localStorage.setItem('notes', JSON.stringify(state.notes.map(item => item)))
                 return note;
             })
         },
@@ -54,6 +61,7 @@ export const notesSlice = createSlice({
                     note.editable = action.payload.editable
                     note.body = note.body.trim()
                 }
+                localStorage.setItem('notes', JSON.stringify(state.notes.map(item => item)))
                 return note;
             })
         },
@@ -62,6 +70,7 @@ export const notesSlice = createSlice({
             const [removedCard] = newCards.splice(action.payload.oldNoteIndex, 1);
             newCards.splice(action.payload.destNoteIndex, 0, removedCard);
             state.notes = newCards;
+            localStorage.setItem('notes', JSON.stringify(state.notes.map(item => item)))
         }
     }
 })
